@@ -1,0 +1,72 @@
+import { IconBrandTwitter, IconBrandFacebook, IconBrandAlpineJs, IconBrandGithub } from '@tabler/icons-react';
+import Button from './components/Button'
+import Card from './components/Card';
+import { useState } from 'react';
+import Counter from './components/Counter';
+import Input from './components/Input';
+import Label from './components/Label';
+
+function App() {
+  const [form, setForm] = useState({
+    name: '',
+    email: ''
+  })
+
+  function onChange(event) {
+    setForm(x => ({
+      ...x,
+      [event.target.name]: event.target.value
+    }))
+  }
+
+  function submit(event) {
+    event.preventDefault();
+
+    console.log(form)
+  }
+  return (
+    <>
+      <div className={'bg-slate-100 antialiased flex items-center justify-center min-h-screen '}>
+        <div className='max-w-md w-full'>
+        <form onSubmit={submit}>
+            <Card>
+            <Card.Title>
+              Login Form
+            </Card.Title>
+            <div className='p-4'>
+              <div className='flex items-center gap-2'>
+                <h1>Name : </h1>
+                <p>{ form.name }</p>
+              </div>
+              <div className='flex items-center gap-2'>
+                <h1>Email : </h1>
+                <p>{ form.email }</p>
+              </div>
+            </div>
+            <Card.Body>
+                <div>
+                  <Label htmlFor="name" value={'Name'}/>
+                  <Input value={form.name} onChange={onChange} name={"name"} id={"name"}></Input>
+                </div>
+                <div>
+                  <Label htmlFor="email" value={'Email'}/>
+                  <Input value={form.email} onChange={onChange} name={"email"} id={"email"}></Input>
+                </div>
+            </Card.Body>
+            <Card.Footer>
+              <Button type={'submit'}>
+                <IconBrandGithub type={'submit'}></IconBrandGithub>
+                Login
+              </Button>
+            </Card.Footer>
+            </Card>
+        </form>
+        </div>
+      </div>
+    </>
+  );
+}
+
+
+
+export default App;
